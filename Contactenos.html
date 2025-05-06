@@ -10,6 +10,58 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="estilos/estilos.css">
     <link rel="icon" href="favicon.ico">
+    <script>
+        window.addEventListener('DOMContentLoaded',function(){ //utilizar para confirmar que el dom esta cargado
+            /*function esEmailValido(email) {
+                let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            }*/
+            const esEmailValido = (email) => {
+                let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            }
+            const nombreVacio = (nombre) => {
+                return nombre.trim() === '';
+            }
+            document.getElementById('miFormulario').addEventListener('submit', function(event) {
+                let divErrores = document.getElementById('errores');
+                //limpiar los errores
+                divErrores.innerHTML='';
+                let errores = [];
+                console.log('cantidad de elementos al principio :',errores.length);
+                let nombre = document.getElementById('nombre').value;
+                let email = document.getElementById('email').value;
+                let comuna = document.getElementById('tipoconsulta').value;
+                let comentario = document.getElementById('mensaje').value;
+                if (nombreVacio(nombre)) {
+                    errores.push('El campo nombre es obligatorio.');
+                }
+                if (email === '') {
+                    errores.push('El campo email es obligatorio.');
+                }else{
+                    if(!esEmailValido(email)){
+                        errores.push('El email ingresado es inválido');
+                    }
+                }
+                if (comuna === '') {
+                    errores.push('El tipo de consulta es obligatorio.');
+                }
+                if (comentario === '') {
+                    errores.push('El campo mensaje es obligatorio.');
+                }
+                if (errores.length > 0) {
+                    console.log('nueva cantidad de elementos:',errores.length);
+                    console.log(errores);
+                    event.preventDefault();
+                    divErrores.setAttribute('class','alert alert-danger');
+                    divErrores.innerHTML = errores.join('<br>');
+
+                }else{
+                    alert('Enviando formulario...');
+                } 
+            })
+        })
+    </script>
 </head>
 
 <body>
@@ -43,15 +95,19 @@
 
     <div class="row mt-4">
         <div class="col-md-6 offset-md-3">
-            <form class="form">
+            <form class="form" id = "miFormulario">
                 <h3>Formulario de contacto</h3>
                 <div class="form-group">
-                    <label for="id-input-email">Email</label>
-                    <input type="email" class="form-control" id="id-input-email" placeholder="Tucorreo@example.com">
+                    <label for="nombre">Ingrese nombre completo</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo">
+                  </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Tucorreo@example.com">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Tipo de consulta</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" id="tipoconsulta">
                         <option></option>
                         <option>Ortodoncia General</option>
                         <option>Urgencia Dental</option>
@@ -66,12 +122,13 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Mensaje</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="mensaje" rows="3"></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" clasS="btn btn-success">Enviar</button>
                 </div>
             </form>
+            <div id="errores"></div>
         </div>
     </div>
     <section class="mapa">
