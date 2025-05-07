@@ -95,19 +95,19 @@
 
     <div class="row mt-4">
         <div class="col-md-6 offset-md-3">
-            <form class="form" id = "miFormulario">
+            <form action="https://formsubmit.co/ecf4eb2e123fe6480a65d38ae48b2c9e" method="POST" class="form" id = "miFormulario">
                 <h3>Formulario de contacto</h3>
                 <div class="form-group">
                     <label for="nombre">Ingrese nombre completo</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo">
+                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Completo">
                   </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Tucorreo@example.com">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Tucorreo@example.com">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Tipo de consulta</label>
-                    <select class="form-control" id="tipoconsulta">
+                    <select class="form-control" name="tipoconsulta" id="tipoconsulta">
                         <option></option>
                         <option>Ortodoncia General</option>
                         <option>Urgencia Dental</option>
@@ -122,11 +122,13 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Mensaje</label>
-                    <textarea class="form-control" id="mensaje" rows="3"></textarea>
+                    <textarea class="form-control" name="mensaje" id="mensaje" rows="3"></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" clasS="btn btn-success">Enviar</button>
                 </div>
+                <input type="hidden" name="_next" value="https://miniyis.github.io/PruebaFront-main/Contactenos.html">
+                <input type="hidden" name="_captcha" value="false">
             </form>
             <div id="errores"></div>
         </div>

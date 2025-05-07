@@ -179,3 +179,8 @@ body {
     border: 0;
     max-width: 100%;
   }
+
+#errores{
+    background-color: rgb(187, 187, 187);
+    color:black
+}
